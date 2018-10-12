@@ -1,0 +1,89 @@
+@(message: String, options: Map[String, String])
+
+@main("Add Lecturer") {
+
+<form method="post" class="panel" role="form" action="@routes.CLecs.addLec()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Add Lecturers
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">LecName</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="LecName" placeholder="Enter Lecturer's name" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">IdNo</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="IdNo" placeholder="Enter Lecturer's ID number" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group clearfix">
+                <label class="col-lg-3 col-md-4 control-label">LecDept</label>
+
+                <div class="col-lg-9">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="LecDept" >
+                        @for((key, value) <- options) {
+                        @if(options!=null){
+                        <option value="@value"> @value </option>
+                        }else{
+                        <option>No Department Found</option>
+                        }
+                        }
+                    </select>
+                    <!--<input type="text" class=" form-control" rows="1" name="LecDept" placeholder="Enter Lecturer's Department" ></input>-->
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">LecEmail</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="email" class=" form-control" rows="1" name="LecEmail" placeholder="Enter Lecturer's Email" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">LecPassword</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="LecPassword" placeholder="Enter Lecturer's password" ></input>
+                </div>
+
+            </div>
+
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Lecturer">
+                <a class="btn btn-danger m-b-10" href="">Cancel</a></p>
+        </div>
+    </div>
+
+</form>
+
+
+}

@@ -1,0 +1,57 @@
+@(message: String)
+
+@main("Add Faculty") {
+
+<form method="post" class="panel" role="form" action="@routes.CFaculty.addFaculty()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Add Faculty
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">FName</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="FName" placeholder="Enter Faculty name" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">FInt</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="FInt" placeholder="Enter Faculty initials" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">FMajor</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="FMajor" placeholder="Enter Faculty major" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Faculty">
+                <a class="btn btn-danger m-b-10" href="">Cancel</a></p>
+        </div>
+    </div>
+
+</form>
+
+
+}

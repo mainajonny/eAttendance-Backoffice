@@ -1,0 +1,67 @@
+@(message: String, options: Map[String, String])
+
+@main("Add Units") {
+
+<form method="post" class="panel" role="form" action="@routes.CUnits.addUnits()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Add Unit
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">UnitName</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="UnitName" placeholder="Enter unit name" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">UnitCode</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="UnitCode" placeholder="Enter unit code" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group clearfix">
+                <label class="col-lg-3 col-md-4 control-label">UnitProg</label>
+
+                <div class="col-lg-9">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="UnitProg" >
+                        @for((key, value) <- options) {
+                        @if(options!=null){
+                        <option value="@value"> @value </option>
+                        }else{
+                        <option>No Department Found</option>
+                        }
+                        }
+                    </select>
+                    <!--<input type="text" class=" form-control" rows="1" name="UnitProg" placeholder="Enter unit department" ></input>-->
+                </div>
+
+            </div>
+
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Unit">
+                <a class="btn btn-danger m-b-10" href="">Cancel</a></p>
+        </div>
+    </div>
+
+</form>
+
+
+}

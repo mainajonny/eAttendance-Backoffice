@@ -1,0 +1,47 @@
+@(message: String)
+
+@main("Users") {
+
+<form method="post" class="panel" role="form" action="@routes.CUsers.addUsers()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Add User
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">Email</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="email" class=" form-control" rows="1" name="Email" placeholder="Enter Email" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">Password</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="Password" placeholder="Enter Password" ></input>
+                </div>
+
+            </div>
+
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add User">
+                <a class="btn btn-danger m-b-10" href="">Cancel</a></p>
+        </div>
+    </div>
+
+</form>
+
+
+}

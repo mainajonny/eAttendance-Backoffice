@@ -1,0 +1,132 @@
+
+@(message: String)
+
+
+@main(message) {
+<script type="text/javascript">
+    /* Table initialisation */
+    //
+    $(document).ready(function() {
+
+        $('#attendance_table').DataTable( {
+            "PaginationType": "bootstrap",
+            "responsive": true,
+            "bProcessing": true,
+            "aaSorting": [[ 0, "asc" ]],
+            "bServerSide": true,
+            "sAjaxSource": "@routes.CStudentAttendance.attendancelist()",
+            dom: '<"tbl-top clearfix"lfr>,t,<"tbl-footer clearfix"<"tbl-info pull-left"i><"tbl-pagin pull-right"p>>',
+            "aoColumns": [
+                { "mDataProp": "StudentName" },
+                { "mDataProp": "RegNumber" },
+                { "mDataProp": "StudentProg" },
+                { "mDataProp": "Unit" },
+                { "mDataProp": "UnitProg" },
+                { "mDataProp": "Lecturer" },
+                { "mDataProp": "Attendance" },
+                { "mDataProp": "isUploaded" },
+
+                {
+                    "mDataProp": null,
+                    "mRender": function(obj) {
+                        var sReturn = obj.zid;
+                        var returnButton = "<a class='hidden-xs' href='/renderEditUser?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+">  <button class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i></button> </a>";
+                        return  returnButton;
+
+                    }
+
+                },
+
+
+                {
+                    "mDataProp": null,
+                    "mRender": function(obj) {
+                        var sReturn = obj.zid;
+                        var status=   obj.status;
+                        if(status==1){
+                            var deactivateButton = "<a class='hidden-xs' href='/deleteSystemUser?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+"><button class='btn btn-success btn-xs'><i class='fa fa-check'></i></button> </a>";
+                            return  deactivateButton;
+                        }else{
+                            var sReturn = obj.zid;
+                            var activateButton = "<a class='hidden-xs' href='/deleteSystemUser?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+"><button class='btn btn-danger btn-xs'><i class='fa fa-close'></i></button></a>";
+                            return  activateButton;
+
+                        }}
+                },
+            ]
+
+        } );
+
+    } );
+
+</script>
+
+<!--body wrapper start-->
+<div class="wrapper">
+
+    <div class="row">
+        <div class="col-sm-11">
+            <section class="panel">
+                <header class="panel-heading ">
+                    Attendance List
+
+
+                    <span class="tools pull-right">
+              <a class="fa fa-repeat box-refresh" href="javascript:;"></a>
+              <a class="t-close fa fa-times" href="javascript:;"></a>
+              <a href=" " class="button">Attendance</a>
+            </span>
+                </header>
+                <table class="table responsive-data-table data-table" id="attendance_table">
+                    <thead>
+                    <tr>
+                        <th>
+                            StudentName
+                        </th>
+
+                        <th>
+                            RegNumber
+                        </th>
+
+                        <th>
+                            StudentProg
+                        </th>
+
+                        <th>
+                            Unit
+                        </th>
+
+                        <th>
+                            UnitProg
+                        </th>
+
+                        <th>
+                            Lecturer
+                        </th>
+
+                        <th>
+                            Attendance
+                        </th>
+
+                        <th>
+                            isUploaded
+                        </th>
+
+                        <th>
+                            Edit Attendance Record
+                        </th>
+
+                        <th>Act/Diactivate</th>
+
+                    </tr>
+                    </thead>
+                </table>
+            </section>
+        </div>
+    </div>
+
+</div>
+
+
+
+}

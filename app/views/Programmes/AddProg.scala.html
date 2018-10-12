@@ -1,0 +1,71 @@
+@(message: String, deptoptions: Map[String, String])
+
+@main("Add Programme") {
+
+<form method="post" class="panel" role="form" action="@routes.CProgs.addProgs()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Add Programme
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">ProgName</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="ProgName" placeholder="Enter Programme name" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group clearfix">
+                <label class="col-lg-3 col-md-4 control-label">ProgLevel</label>
+
+                <div class="col-lg-9">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="ProgLevel" >
+                        <option value="undergraduate">Undergraduate Programme</option>
+                        <option value="postgraduate">Postgraduate Programme</option>
+                        <option value="diploma">Diploma Programme</option>
+                        <option value="certificate">Certificate Programme</option>
+                    </select>
+                    <!--<input type="text" class=" form-control" rows="1" name="ProgLevel" placeholder="Enter programme faculty" ></input>-->
+                </div>
+
+            </div>
+
+            <br>
+            <div class="form-group clearfix">
+                <label class="col-lg-3 col-md-4 control-label">ProgDept</label>
+
+                <div class="col-lg-9">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="ProgDept" >
+                        @for((key, value) <- deptoptions) {
+                        @if(deptoptions!=null){
+                        <option value="@value"> @value </option>
+                        }else{
+                        <option>No Department Found</option>
+                        }
+                        }
+                    </select>
+                    <!--<input type="text" class=" form-control" rows="1" name="ProgDept" placeholder="Enter programme department" ></input>-->
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Programme">
+                <a class="btn btn-danger m-b-10" href="">Cancel</a></p>
+        </div>
+    </div>
+
+</form>
+
+
+}

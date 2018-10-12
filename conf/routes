@@ -1,0 +1,74 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /index                           controllers.Application.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+#Dept
+GET         /renderDepts            controllers.CDept.renderDepts()
+POST        /addDept                controllers.CDept.addDept()
+GET         /deptslist              controllers.CDept.deptslist()
+GET         /renderViewDepts        controllers.CDept.renderViewDepts()
+
+#Faculty
+GET         /renderFaculty             controllers.CFaculty.renderFaculty()
+POST        /addFaculty                controllers.CFaculty.addFaculty()
+GET         /facultylist               controllers.CFaculty.facultylist()
+GET         /renderViewFaculty         controllers.CFaculty.renderViewFaculty()
+
+#Lecs
+GET         /renderLecs            controllers.CLecs.renderLecs()
+POST        /addLec                controllers.CLecs.addLec()
+GET         /lecslist              controllers.CLecs.lecslist()
+GET         /renderViewLecs        controllers.CLecs.renderViewLecs()
+
+#Prog
+GET         /renderProgs            controllers.CProgs.renderProgs()
+POST        /addProgs               controllers.CProgs.addProgs()
+GET         /progslist              controllers.CProgs.progslist()
+GET         /renderViewProgs        controllers.CProgs.renderViewProgs()
+
+#Studs
+GET         /renderStuds            controllers.CStud.renderStuds()
+POST        /addStuds               controllers.CStud.addStuds()
+GET         /studslist              controllers.CStud.studslist()
+GET         /renderViewStuds        controllers.CStud.renderViewStuds()
+
+#Units
+GET         /renderUnits            controllers.CUnits.renderUnits()
+POST        /addUnits               controllers.CUnits.addUnits()
+GET         /unitslist              controllers.CUnits.unitslist()
+GET         /renderViewUnits        controllers.CUnits.renderViewUnits()
+
+#AssignUnits
+GET         /renderAssignedUnits            controllers.CAssignUnit.renderAssignedUnits()
+POST        /assignUnits                    controllers.CAssignUnit.assignUnits()
+GET         /assignedunitslist              controllers.CAssignUnit.assignedunitslist()
+GET         /renderViewAssignedUnits        controllers.CAssignUnit.renderViewAssignedUnits()
+
+#Users
+GET         /renderUsers               controllers.CUsers.renderUsers()
+POST        /addUsers                  controllers.CUsers.addUsers()
+GET         /userslist                 controllers.CUsers.userslist()
+GET         /renderViewUsers           controllers.CUsers.renderViewUsers()
+
+#StudentAttendance
+#GET         /renderStudentAttendance            controllers.CStudentAttendance.renderStudentAttendance()
+POST        /addAttendance                      controllers.CStudentAttendance.addAttendance()
+GET         /attendancelist                     controllers.CStudentAttendance.attendancelist()
+GET         /renderViewStudentAttendance        controllers.CStudentAttendance.renderViewStudentAttendance()
+
+#MobileApis
+POST         /AuthenticateUser              controllers.MobileApi.AuthenticateUser()
+POST         /uploadattendance              controllers.MobileApi.uploadattendance()
+GET          /ReturnAllFaculty              controllers.MobileApi.ReturnAllFaculty()
+POST         /returnDepartments             controllers.MobileApi.returnDepartments()
+GET          /returnAllLecs                 controllers.MobileApi.returnAllLecs()
+POST         /returnAssignedUnits           controllers.MobileApi.returnAssignedUnits()
+POST         /returnProfiledetails          controllers.MobileApi.returnProfiledetails()
+POST         /Updateprofile                 controllers.MobileApi.Updateprofile()
+GET          /returnAllStudents             controllers.MobileApi.returnAllStudents()

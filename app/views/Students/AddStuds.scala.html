@@ -1,0 +1,88 @@
+@(message: String, options: Map[String, String])
+
+@main("Add Students") {
+
+<form method="post" class="panel" role="form" action="@routes.CStud.addStuds()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Add Student
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">StudName</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="StudName" placeholder="Enter Student's name" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">RegNo</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="RegNo" placeholder="Enter registration number" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group clearfix">
+                <label class="col-lg-3 col-md-4 control-label">Prog</label>
+
+                <div class="col-lg-9">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="Prog" >
+                        @for((key, value) <- options) {
+                        @if(options!=null){
+                        <option value="@value"> @value </option>
+                        }else{
+                        <option>No Department Found</option>
+                        }
+                        }
+                    </select>
+                    <!--<input type="text" class=" form-control" rows="1" name="Prog" placeholder="Enter student's programme" ></input>-->
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">Year</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="Year" placeholder="Enter year of study" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="form-group">
+                <label class="col-lg-3 col-md-4 control-label">Sem</label>
+
+                <div class="col-lg-9 col-md-8">
+                    <input type="text" class=" form-control" rows="1" name="Sem" placeholder="Enter semester" ></input>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Student">
+                <a class="btn btn-danger m-b-10" href="">Cancel</a></p>
+        </div>
+    </div>
+
+</form>
+
+
+}
