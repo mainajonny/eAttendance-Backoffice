@@ -89,9 +89,6 @@ public class MobileApi extends Controller {
         if(MAssignUnit.findUnitByEmailandDept(AssignLec, AssignDept) != null){
                 result.put("responseCode", Json.toJson(MAssignUnit.findUnitByEmailandDept(AssignLec, AssignDept)));
             }
-            else{
-                result.put("responseCode", "203");
-            }
 
             return ok(result);
 
