@@ -172,9 +172,6 @@ public class MobileApi extends Controller {
         if(MLecs.findLecByEmail(LecEmail) != null){
             result.put("responseCode", Json.toJson(MLecs.findLecByEmail(LecEmail)));
         }
-        else{
-            result.put("responseCode", "210");
-        }
 
         return ok(result);
 
