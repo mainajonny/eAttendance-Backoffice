@@ -1,13 +1,13 @@
-@(message: String, options: Map[String, String])
+@(message: String,unit: MUnits, options: Map[String, String])
 
-@main("Add Units") {
+@main("Edit Units") {
 
-<form method="post" class="panel" role="form" action="@routes.CUnits.addUnits()">
+<form method="post" class="panel" role="form" action="@routes.CUnits.EditUnit(unit.fid)">
     <div class="wrapper">
 
         <div class="page-head">
             <h3 class="m-b-less">
-                Add Unit
+                Edit Unit
             </h3>
 
 
@@ -17,7 +17,7 @@
                 <label class="col-lg-3 col-md-4 control-label">UnitName</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="UnitName" placeholder="Enter unit name" ></input>
+                    <input type="text" class=" form-control" rows="1" name="UnitName" required value="@unit.UnitName" ></input>
                 </div>
 
             </div>
@@ -28,7 +28,7 @@
                 <label class="col-lg-3 col-md-4 control-label">UnitCode</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="UnitCode" placeholder="Enter unit code" ></input>
+                    <input type="text" class=" form-control" rows="1" name="UnitCode" required value="@unit.UnitCode" ></input>
                 </div>
 
             </div>
@@ -40,6 +40,7 @@
 
                 <div class="col-lg-9">
                     <select class="form-control  select2"  data-activates='dropdown1' name="UnitProg" >
+                        <option value="@unit.UnitProg"> @unit.UnitProg </option>
                         @for((key, value) <- options) {
                         @if(options!=null){
                         <option value="@value"> @value </option>
@@ -56,7 +57,7 @@
 
             <br>
             <br>
-            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Unit">
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Update Unit">
                 <a class="btn btn-danger m-b-10" href="@routes.CUnits.renderViewUnits()">Cancel</a></p>
         </div>
     </div>

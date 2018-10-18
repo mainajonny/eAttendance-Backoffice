@@ -1,13 +1,13 @@
-@(message: String)
+@(message: String,faculty: MFaculty)
 
-@main("Add Faculty") {
+@main("Edit Faculty") {
 
-<form method="post" class="panel" role="form" action="@routes.CFaculty.addFaculty()">
+<form method="post" class="panel" role="form" action="@routes.CFaculty.EditFaculty(faculty.did)">
     <div class="wrapper">
 
         <div class="page-head">
             <h3 class="m-b-less">
-                Add Faculty
+                Edit Faculty
             </h3>
 
 
@@ -17,7 +17,7 @@
                 <label class="col-lg-3 col-md-4 control-label">FName</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="FName" placeholder="Enter Faculty name" ></input>
+                    <input type="text" class=" form-control" rows="1" name="FName" required value="@faculty.FName" ></input>
                 </div>
 
             </div>
@@ -28,7 +28,7 @@
                 <label class="col-lg-3 col-md-4 control-label">FInt</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="FInt" placeholder="Enter Faculty initials" ></input>
+                    <input type="text" class=" form-control" rows="1" name="FInt" required value="@faculty.FInt" ></input>
                 </div>
 
             </div>
@@ -39,14 +39,14 @@
                 <label class="col-lg-3 col-md-4 control-label">FMajor</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="FMajor" placeholder="Enter Faculty major" ></input>
+                    <input type="text" class=" form-control" rows="1" name="FMajor" required value="@faculty.FMajor" ></input>
                 </div>
 
             </div>
 
             <br>
             <br>
-            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Faculty">
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Update Faculty">
                 <a class="btn btn-danger m-b-10" href="@routes.CFaculty.renderViewFaculty()">Cancel</a></p>
         </div>
     </div>

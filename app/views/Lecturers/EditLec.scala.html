@@ -1,0 +1,90 @@
+@(message: String,lec: MLecs ,options: Map[String, String])
+
+@main("Edit Lecturers") {
+
+  <form method="post" class="panel" role="form" action="@routes.CLecs.EditLecturer(lec.cid)">
+    <div class="wrapper">
+
+      <div class="page-head">
+        <h3 class="m-b-less">
+          Edit Lecturer
+        </h3>
+
+
+        <br>
+        <br>
+        <div class="form-group">
+          <label class="col-lg-3 col-md-4 control-label">LecName</label>
+
+          <div class="col-lg-9 col-md-8">
+            <input type="text" class=" form-control" rows="1" name="LecName" required value="@lec.LecName" ></input>
+          </div>
+
+        </div>
+
+        <br>
+        <br>
+        <div class="form-group">
+          <label class="col-lg-3 col-md-4 control-label">IdNo</label>
+
+          <div class="col-lg-9 col-md-8">
+            <input type="text" class=" form-control" rows="1" name="IdNo" required value="@lec.IdNo" ></input>
+          </div>
+
+        </div>
+
+        <br>
+        <br>
+        <div class="form-group clearfix">
+          <label class="col-lg-3 col-md-4 control-label">LecDept</label>
+
+          <div class="col-lg-9">
+            <select class="form-control  select2"  data-activates='dropdown1' name="LecDept" >
+                <option value="@lec.LecDept"> @lec.LecDept </option>
+              @for((key, value) <- options) {
+              @if(options!=null){
+              <option value="@value"> @value </option>
+              }else{
+              <option>No Department Found</option>
+              }
+              }
+            </select>
+            <!--<input type="text" class=" form-control" rows="1" name="LecDept" required value="@lec.LecDept" ></input>-->
+          </div>
+
+        </div>
+
+        <br>
+        <br>
+        <div class="form-group">
+          <label class="col-lg-3 col-md-4 control-label">LecEmail</label>
+
+          <div class="col-lg-9 col-md-8">
+            <input type="email" class=" form-control" rows="1" name="LecEmail" required value="@lec.LecEmail" ></input>
+          </div>
+
+        </div>
+
+        <br>
+        <br>
+        <div class="form-group">
+          <label class="col-lg-3 col-md-4 control-label">LecPassword</label>
+
+          <div class="col-lg-9 col-md-8">
+            <input type="text" class=" form-control" rows="1" name="LecPassword" required value="@lec.LecPassword" ></input>
+          </div>
+
+        </div>
+
+
+        <br>
+        <br>
+        <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Update Lecturer">
+          <a class="btn btn-danger m-b-10" href="@routes.CLecs.renderViewLecs()">Cancel</a></p>
+      </div>
+    </div>
+
+  </form>
+
+
+}

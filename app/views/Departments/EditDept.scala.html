@@ -1,13 +1,13 @@
-@(message: String, options: Map[String, String])
+@(message: String,dept: MDept, options: Map[String, String])
 
-@main("Add Department") {
+@main("Edit Department") {
 
-<form method="post" class="panel" role="form" action="@routes.CDept.addDept()">
+<form method="post" class="panel" role="form" action="@routes.CDept.EditDepartment(dept.bid)">
     <div class="wrapper">
 
         <div class="page-head">
             <h3 class="m-b-less">
-                Add Departments
+                Edit Departments
             </h3>
 
 
@@ -17,7 +17,7 @@
                 <label class="col-lg-3 col-md-4 control-label">DeptName</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="DeptName" placeholder="Enter Department name" ></input>
+                    <input type="text" class=" form-control" rows="1" name="DeptName" required value="@dept.DeptName" ></input>
                 </div>
 
             </div>
@@ -29,6 +29,7 @@
 
                 <div class="col-lg-9">
                     <select class="form-control  select2"  data-activates='dropdown1' name="DeptFaculty" >
+                        <option value="@dept.DeptFaculty"> @dept.DeptFaculty </option>
                         @for((key, value) <- options) {
                         @if(options!=null){
                         <option value="@value"> @value </option>
@@ -37,7 +38,7 @@
                         }
                         }
                     </select>
-                    <!--<input type="text" class=" form-control" rows="1" name="DeptFaculty" placeholder="Enter Faculty" ></input>-->
+                    <!--<input type="text" class=" form-control" rows="1" name="DeptFaculty" required value="@dept.DeptFaculty" ></input>-->
                 </div>
 
             </div>
@@ -48,14 +49,14 @@
                 <label class="col-lg-3 col-md-4 control-label">DeptHead</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="DeptHead" placeholder="Enter Head of Department" ></input>
+                    <input type="text" class=" form-control" rows="1" name="DeptHead" required value="@dept.DeptHead" ></input>
                 </div>
 
             </div>
 
             <br>
             <br>
-            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Department">
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Update Department">
                 <a class="btn btn-danger m-b-10" href="@routes.CDept.renderViewDepts()">Cancel</a></p>
         </div>
     </div>

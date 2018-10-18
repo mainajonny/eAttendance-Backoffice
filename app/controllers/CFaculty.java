@@ -46,7 +46,33 @@ public class CFaculty extends Controller {
         faculty.FMajor=FMajor;
         faculty.isActive="1";
         faculty.save();
-        return renderViewFaculty();
+        return redirect(routes.CFaculty.renderViewFaculty());
+    }
+
+    public static Result renderEditFaculty(Long id) {
+
+        MFaculty mFaculty= MFaculty.findFacultyById(id);
+        return ok(EditFaculty.render("Edit Faculty", mFaculty));
+    }
+
+    public static Result EditFaculty(Long id){
+        MFaculty mFaculty=new MFaculty();
+        mFaculty.did=id;
+        mFaculty.isActive="1";
+        mFaculty.FName=Form.form().bindFromRequest().get("FName");
+        mFaculty.FInt=Form.form().bindFromRequest().get("FInt");
+        mFaculty.FMajor=Form.form().bindFromRequest().get("FMajor");
+        Ebean.update(mFaculty);
+
+        return redirect(routes.CFaculty.renderViewFaculty());
+    }
+
+    public static  Result deleteFaculty(Long id){
+
+        MFaculty mFaculty=MFaculty.findFacultyById(id);
+        mFaculty.delete();
+
+        return  redirect(routes.CFaculty.renderViewFaculty());
     }
 
     public static Result facultylist() {

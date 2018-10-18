@@ -43,6 +43,11 @@ public class MAssignUnit extends Model{
         return findAssignedUnits.all();
     }
 
+    public static MAssignUnit findAssignedUnitById(long id){
+        return findAssignedUnits.where().eq("zid", id).findUnique();
+    }
+
+
     public static List<MAssignUnit> findUnitByEmailandDept(String AssignLecEmail, String AssignDept) {
         return findAssignedUnits.where().eq("AssignLecEmail", AssignLecEmail).eq("AssignDept", AssignDept).findList();
     }

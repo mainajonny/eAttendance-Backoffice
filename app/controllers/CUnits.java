@@ -45,7 +45,33 @@ public class CUnits extends Controller {
         units.UnitProg =UnitProg;
         units.isActive="1";
         units.save();
-        return renderViewUnits();
+        return redirect(routes.CUnits.renderViewUnits());
+    }
+
+    public static Result renderEditUnit(Long id) {
+
+        MUnits mUnits= MUnits.findUnitById(id);
+        return ok(EditUnits.render("Edit Units", mUnits, MProgs.options()));
+    }
+
+    public static Result EditUnit(Long id){
+        MUnits mUnits=new MUnits();
+        mUnits.fid=id;
+        mUnits.isActive="1";
+        mUnits.UnitName=Form.form().bindFromRequest().get("UnitName");
+        mUnits.UnitCode=Form.form().bindFromRequest().get("UnitCode");
+        mUnits.UnitProg=Form.form().bindFromRequest().get("UnitProg");
+        Ebean.update(mUnits);
+
+        return redirect(routes.CUnits.renderViewUnits());
+    }
+
+    public static  Result deleteUnit(Long id){
+
+        MUnits mUnits=MUnits.findUnitById(id);
+        mUnits.delete();
+
+        return  redirect(routes.CUnits.renderViewUnits());
     }
 
     public static Result unitslist() {

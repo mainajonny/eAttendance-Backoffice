@@ -1,13 +1,13 @@
-@(message: String, deptoptions: Map[String, String])
+@(message: String,prog: MProgs, deptoptions: Map[String, String])
 
-@main("Add Programme") {
+@main("Edit Programme") {
 
-<form method="post" class="panel" role="form" action="@routes.CProgs.addProgs()">
+<form method="post" class="panel" role="form" action="@routes.CProgs.EditProgramme(prog.eid)">
     <div class="wrapper">
 
         <div class="page-head">
             <h3 class="m-b-less">
-                Add Programme
+                Edit Programme
             </h3>
 
 
@@ -17,7 +17,7 @@
                 <label class="col-lg-3 col-md-4 control-label">ProgName</label>
 
                 <div class="col-lg-9 col-md-8">
-                    <input type="text" class=" form-control" rows="1" name="ProgName" placeholder="Enter Programme name" ></input>
+                    <input type="text" class=" form-control" rows="1" name="ProgName" required value="@prog.ProgName" ></input>
                 </div>
 
             </div>
@@ -29,6 +29,7 @@
 
                 <div class="col-lg-9">
                     <select class="form-control  select2"  data-activates='dropdown1' name="ProgLevel" >
+                        <option value="@prog.ProgLevel"></option>
                         <option value="undergraduate">Undergraduate Programme</option>
                         <option value="postgraduate">Postgraduate Programme</option>
                         <option value="diploma">Diploma Programme</option>
@@ -45,6 +46,7 @@
 
                 <div class="col-lg-9">
                     <select class="form-control  select2"  data-activates='dropdown1' name="ProgDept" >
+                        <option value="@prog.ProgDept"> @prog.ProgDept </option>
                         @for((key, value) <- deptoptions) {
                         @if(deptoptions!=null){
                         <option value="@value"> @value </option>
@@ -60,7 +62,7 @@
 
             <br>
             <br>
-            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Add Programme">
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="Edit Programme">
                 <a class="btn btn-danger m-b-10" href="@routes.CProgs.renderViewProgs()">Cancel</a></p>
         </div>
     </div>

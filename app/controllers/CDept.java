@@ -47,7 +47,33 @@ public class CDept extends Controller{
         depts.DeptFaculty=DeptFaculty;
         depts.isActive="1";
         depts.save();
-        return renderViewDepts();
+        return redirect(routes.CDept.renderViewDepts());
+    }
+
+    public static Result renderEditDept(Long id) {
+
+        MDept mDept= MDept.findDeptById(id);
+        return ok(EditDept.render("Edit Department", mDept, MFaculty.options()));
+    }
+
+    public static Result EditDepartment(Long id){
+        MDept mDept=new MDept();
+        mDept.bid=id;
+        mDept.isActive="1";
+        mDept.DeptName=Form.form().bindFromRequest().get("DeptName");
+        mDept.DeptHead=Form.form().bindFromRequest().get("DeptHead");
+        mDept.DeptFaculty=Form.form().bindFromRequest().get("DeptFaculty");
+        Ebean.update(mDept);
+
+        return redirect(routes.CDept.renderViewDepts());
+    }
+
+    public static  Result deleteDept(Long id){
+
+        MDept mDept=MDept.findDeptById(id);
+        mDept.delete();
+
+        return  redirect(routes.CDept.renderViewDepts());
     }
 
     public static Result deptslist() {

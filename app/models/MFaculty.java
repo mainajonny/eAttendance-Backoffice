@@ -36,6 +36,10 @@ public class MFaculty extends Model {
         return findFaculty.all();
     }
 
+    public static MFaculty findFacultyById(long id) {
+        return findFaculty.where().eq("did", id).findUnique();
+    }
+
     public static Map<String, String> options(){
         LinkedHashMap<String,String> options=new LinkedHashMap<String,String>();
         for(MFaculty c: MFaculty.findFaculty.findList()){

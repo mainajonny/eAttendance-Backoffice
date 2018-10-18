@@ -45,7 +45,33 @@ public class CProgs extends Controller {
         progs.ProgLevel =ProgLevel;
         progs.isActive="1";
         progs.save();
-        return renderViewProgs();
+        return redirect(routes.CProgs.renderViewProgs());
+    }
+
+    public static Result renderEditProg(Long id) {
+
+        MProgs mProgs= MProgs.findProgById(id);
+        return ok(EditProg.render("Edit Programme", mProgs, MDept.deptoptions()));
+    }
+
+    public static Result EditProgramme(Long id){
+        MProgs mProgs=new MProgs();
+        mProgs.eid=id;
+        mProgs.isActive="1";
+        mProgs.ProgName=Form.form().bindFromRequest().get("ProgName");
+        mProgs.ProgDept=Form.form().bindFromRequest().get("ProgDept");
+        mProgs.ProgLevel=Form.form().bindFromRequest().get("ProgLevel");
+        Ebean.update(mProgs);
+
+        return redirect(routes.CProgs.renderViewProgs());
+    }
+
+    public static  Result deleteProg(Long id){
+
+        MProgs mProgs=MProgs.findProgById(id);
+        mProgs.delete();
+
+        return  redirect(routes.CProgs.renderViewProgs());
     }
 
     public static Result progslist() {

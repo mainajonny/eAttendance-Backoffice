@@ -45,7 +45,32 @@ public class CUsers extends Controller {
         users.Password=Password;
         users.isActive="1";
         users.save();
-        return renderViewUsers();
+        return redirect(routes.CUsers.renderViewUsers());
+    }
+
+    public static Result renderEditUsers(Long id) {
+
+        MUsers mUsers= MUsers.findUserById(id);
+        return ok(EditUsers.render("Edit User", mUsers));
+    }
+
+    public static Result EditUsers(Long id){
+        MUsers mUsers=new MUsers();
+        mUsers.aid=id;
+        mUsers.isActive="1";
+        mUsers.Email=Form.form().bindFromRequest().get("Email");
+        mUsers.Password=Form.form().bindFromRequest().get("Password");
+        Ebean.update(mUsers);
+
+        return redirect(routes.CUsers.renderViewUsers());
+    }
+
+    public static  Result deleteUsers(Long id){
+
+        MUsers mUsers=MUsers.findUserById(id);
+        mUsers.delete();
+
+        return  redirect(routes.CUsers.renderViewUsers());
     }
 
     public static Result userslist() {

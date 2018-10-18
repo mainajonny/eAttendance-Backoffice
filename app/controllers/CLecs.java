@@ -49,7 +49,36 @@ public class CLecs extends Controller {
         lecs.LecPassword=LecPassword;
         lecs.isActive="1";
         lecs.save();
-        return renderViewLecs();
+
+        return redirect(routes.CLecs.renderViewLecs());
+    }
+
+    public static Result renderEditLec(Long id) {
+
+        MLecs mLecs= MLecs.findLecById(id);
+        return ok(EditLec.render("Edit Lecturer", mLecs, MDept.deptoptions()));
+    }
+
+    public static Result EditLecturer(Long id){
+        MLecs mLecs=new MLecs();
+        mLecs.cid=id;
+        mLecs.isActive="1";
+        mLecs.IdNo=Form.form().bindFromRequest().get("IdNo");
+        mLecs.LecName=Form.form().bindFromRequest().get("LecName");
+        mLecs.LecDept=Form.form().bindFromRequest().get("LecDept");
+        mLecs.LecEmail=Form.form().bindFromRequest().get("LecEmail");
+        mLecs.LecPassword=Form.form().bindFromRequest().get("LecPassword");
+        Ebean.update(mLecs);
+
+        return redirect(routes.CLecs.renderViewLecs());
+    }
+
+    public static  Result deleteLec(Long id){
+
+        MLecs mLecs=MLecs.findLecById(id);
+        mLecs.delete();
+
+        return  redirect(routes.CLecs.renderViewLecs());
     }
 
     public static Result lecslist() {

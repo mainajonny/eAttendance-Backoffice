@@ -39,6 +39,10 @@ public class MDept extends Model {
         return findDepartments.where().eq("DeptFaculty", FacultyName).findList();
     }
 
+    public static MDept findDeptById(long id) {
+        return findDepartments.where().eq("bid", id).findUnique();
+    }
+
     public static Map<String, String> deptoptions(){
         LinkedHashMap<String,String> options=new LinkedHashMap<String,String>();
         for(MDept c: MDept.findDepartments.findList()){

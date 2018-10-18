@@ -45,6 +45,10 @@ public class MStud extends Model{
         return findStudents.where().eq("RegNo", RegNo).findUnique();
     }
 
+    public static MStud findStudentById(long id) {
+        return findStudents.where().eq("gid", id).findUnique();
+    }
+
     public static MStud findProgByStudent(String RegNo) {
         return findStudents.where().eq("RegNo", RegNo).findUnique();
     }

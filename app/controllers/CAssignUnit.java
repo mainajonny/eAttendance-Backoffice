@@ -57,7 +57,46 @@ public class CAssignUnit extends Controller {
         assignunits.AssignLecEmail =AssignLecEmail;
         assignunits.isActive="1";
         assignunits.save();
-        return renderViewAssignedUnits();
+        return redirect(routes.CAssignUnit.renderViewAssignedUnits());
+    }
+
+    /*public static Result renderEditAssignedUnit(Long id) {
+
+        MAssignUnit mAssignUnit= MAssignUnit.findAssignedUnitById(id);
+        return ok(EditAssignedUnit.render("Edit assigned unit", mAssignUnit, MDept.deptoptions(), MProgs.options(), MUnits.unitoptions(), MLecs.lecoptions()));
+    }
+
+    public static Result EditAssignedUnit(Long id){
+        DynamicForm requestform = Form.form().bindFromRequest();
+        String AssignProg = requestform.get("AssignProg");
+        String AssignLec = requestform.get("AssignLec");
+        String AssignDept = MProgs.findDeptByCourse(AssignProg).ProgDept;
+
+        long LecId=Long.valueOf(AssignLec);
+
+        String AssignLecName=MLecs.findLecById(LecId).LecName;
+        String AssignLecEmail=MLecs.findLecById(LecId).LecEmail;
+
+        MAssignUnit mAssignUnit=new MAssignUnit();
+        mAssignUnit.zid=id;
+        mAssignUnit.isActive="1";
+        mAssignUnit.AssignProg=Form.form().bindFromRequest().get("AssignProg");
+        mAssignUnit.AssignUnit=Form.form().bindFromRequest().get("AssignUnit");
+        mAssignUnit.AssignLec=Form.form().bindFromRequest().get("AssignLec");
+        mAssignUnit.AssignDept=Form.form().bindFromRequest().get(AssignDept);
+        mAssignUnit.AssignLecName=Form.form().bindFromRequest().get(AssignLecName);
+        mAssignUnit.AssignLecEmail=Form.form().bindFromRequest().get(AssignLecEmail);
+        Ebean.update(mAssignUnit);
+
+        return redirect(routes.CAssignUnit.renderViewAssignedUnits());
+    }*/
+
+    public static  Result deleteAssignedUnit(Long id){
+
+        MAssignUnit mAssignUnit=MAssignUnit.findAssignedUnitById(id);
+        mAssignUnit.delete();
+
+        return  redirect(routes.CAssignUnit.renderViewAssignedUnits());
     }
 
     public static Result assignedunitslist() {

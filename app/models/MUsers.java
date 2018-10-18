@@ -31,4 +31,8 @@ public class MUsers extends Model{
         return findUsers.all();
     }
 
+    public static MUsers findUserById(long id){
+        return findUsers.where().eq("aid", id).findUnique();
+    }
+
 }

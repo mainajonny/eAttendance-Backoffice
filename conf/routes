@@ -13,48 +13,72 @@ GET         /renderDepts            controllers.CDept.renderDepts()
 POST        /addDept                controllers.CDept.addDept()
 GET         /deptslist              controllers.CDept.deptslist()
 GET         /renderViewDepts        controllers.CDept.renderViewDepts()
+POST        /EditDepartment         controllers.CDept.EditDepartment(id:Long)
+GET         /renderEditDept         controllers.CDept.renderEditDept(id:Long)
+GET         /deleteDept             controllers.CDept.deleteDept(id:Long)
 
 #Faculty
 GET         /renderFaculty             controllers.CFaculty.renderFaculty()
 POST        /addFaculty                controllers.CFaculty.addFaculty()
 GET         /facultylist               controllers.CFaculty.facultylist()
 GET         /renderViewFaculty         controllers.CFaculty.renderViewFaculty()
+POST        /EditFaculty               controllers.CFaculty.EditFaculty(id:Long)
+GET         /renderEditFaculty         controllers.CFaculty.renderEditFaculty(id:Long)
+GET         /deleteFaculty             controllers.CFaculty.deleteFaculty(id:Long)
 
 #Lecs
 GET         /renderLecs            controllers.CLecs.renderLecs()
 POST        /addLec                controllers.CLecs.addLec()
 GET         /lecslist              controllers.CLecs.lecslist()
 GET         /renderViewLecs        controllers.CLecs.renderViewLecs()
+POST        /EditLecturer          controllers.CLecs.EditLecturer(id:Long)
+GET         /renderEditLec         controllers.CLecs.renderEditLec(id:Long)
+GET         /deleteLec             controllers.CLecs.deleteLec(id:Long)
 
 #Prog
 GET         /renderProgs            controllers.CProgs.renderProgs()
 POST        /addProgs               controllers.CProgs.addProgs()
 GET         /progslist              controllers.CProgs.progslist()
 GET         /renderViewProgs        controllers.CProgs.renderViewProgs()
+POST        /EditProgramme          controllers.CProgs.EditProgramme(id:Long)
+GET         /renderEditProg         controllers.CProgs.renderEditProg(id:Long)
+GET         /deleteProg             controllers.CProgs.deleteProg(id:Long)
 
 #Studs
 GET         /renderStuds            controllers.CStud.renderStuds()
 POST        /addStuds               controllers.CStud.addStuds()
 GET         /studslist              controllers.CStud.studslist()
 GET         /renderViewStuds        controllers.CStud.renderViewStuds()
+POST        /EditStudent            controllers.CStud.EditStudent(id:Long)
+GET         /renderEditStudent      controllers.CStud.renderEditStudent(id:Long)
+GET         /deleteStudent          controllers.CStud.deleteStudent(id:Long)
 
 #Units
 GET         /renderUnits            controllers.CUnits.renderUnits()
 POST        /addUnits               controllers.CUnits.addUnits()
 GET         /unitslist              controllers.CUnits.unitslist()
 GET         /renderViewUnits        controllers.CUnits.renderViewUnits()
+POST        /EditUnit               controllers.CUnits.EditUnit(id:Long)
+GET         /renderEditUnit         controllers.CUnits.renderEditUnit(id:Long)
+GET         /deleteUnit             controllers.CUnits.deleteUnit(id:Long)
 
 #AssignUnits
 GET         /renderAssignedUnits            controllers.CAssignUnit.renderAssignedUnits()
 POST        /assignUnits                    controllers.CAssignUnit.assignUnits()
 GET         /assignedunitslist              controllers.CAssignUnit.assignedunitslist()
 GET         /renderViewAssignedUnits        controllers.CAssignUnit.renderViewAssignedUnits()
+#POST        /EditAssignedUnit               controllers.CAssignUnit.EditAssignedUnit(id:Long)
+#GET         /renderEditAssignedUnit         controllers.CAssignUnit.renderEditAssignedUnit(id:Long)
+GET         /deleteAssignedUnit             controllers.CAssignUnit.deleteAssignedUnit(id:Long)
 
 #Users
 GET         /renderUsers               controllers.CUsers.renderUsers()
 POST        /addUsers                  controllers.CUsers.addUsers()
 GET         /userslist                 controllers.CUsers.userslist()
 GET         /renderViewUsers           controllers.CUsers.renderViewUsers()
+POST        /EditUsers                 controllers.CUsers.EditUsers(id:Long)
+GET         /renderEditUsers           controllers.CUsers.renderEditUsers(id:Long)
+GET         /deleteUsers               controllers.CUsers.deleteUsers(id:Long)
 
 #StudentAttendance
 #GET         /renderStudentAttendance            controllers.CStudentAttendance.renderStudentAttendance()

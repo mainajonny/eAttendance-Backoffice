@@ -41,6 +41,10 @@ public class MProgs extends Model {
         return findProgrammes.where().eq("ProgName", ProgName).findUnique();
     }
 
+    public static MProgs findProgById(long id) {
+        return findProgrammes.where().eq("eid", id).findUnique();
+    }
+
     public static Map<String, String> options(){
         LinkedHashMap<String,String> options=new LinkedHashMap<String,String>();
         for(MProgs c: MProgs.findProgrammes.findList()){

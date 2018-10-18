@@ -51,7 +51,35 @@ public class CStud extends Controller {
         stud.Sem=Sem;
         stud.isActive="1";
         stud.save();
-        return renderViewStuds();
+        return redirect(routes.CStud.renderViewStuds());
+    }
+
+    public static Result renderEditStudent(Long id) {
+
+        MStud mStud= MStud.findStudentById(id);
+        return ok(EditStuds.render("Edit Students", mStud, MProgs.options()));
+    }
+
+    public static Result EditStudent(Long id){
+        MStud mStud=new MStud();
+        mStud.gid=id;
+        mStud.isActive="1";
+        mStud.StudName=Form.form().bindFromRequest().get("StudName");
+        mStud.RegNo=Form.form().bindFromRequest().get("RegNo");
+        mStud.Prog=Form.form().bindFromRequest().get("Prog");
+        mStud.Year=Form.form().bindFromRequest().get("Year");
+        mStud.Sem=Form.form().bindFromRequest().get("Sem");
+        Ebean.update(mStud);
+
+        return redirect(routes.CStud.renderViewStuds());
+    }
+
+    public static  Result deleteStudent(Long id){
+
+        MStud mStud=MStud.findStudentById(id);
+        mStud.delete();
+
+        return  redirect(routes.CStud.renderViewStuds());
     }
 
     public static Result studslist() {

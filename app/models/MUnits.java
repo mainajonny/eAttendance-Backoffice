@@ -35,6 +35,10 @@ public class MUnits extends Model{
         return findUnits.all();
     }
 
+    public static MUnits findUnitById(long id){
+        return findUnits.where().eq("fid", id).findUnique();
+    }
+
     public static Map<String, String> unitoptions(){
         LinkedHashMap<String,String> options=new LinkedHashMap<String,String>();
         for(MUnits c: MUnits.findUnits.findList()){
