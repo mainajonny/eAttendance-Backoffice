@@ -31,10 +31,17 @@ public class MobileApi extends Controller {
         String LecEmail = requestform.get("LecEmail");
         String LecPassword = requestform.get("LecPassword");
 
-        System.out.println("Authenticating lecturer: "+LecEmail+" password: "+LecPassword);
+        String isActive = MLecs.findLecByEmail(LecEmail).get(0).isActive;
 
-        if (MLecs.authenticateUser(LecEmail, LecPassword)!=null){
-            result.put("responseCode", "200");
+        System.out.println("Authenticating lecturer: "+LecEmail+" password: "+LecPassword+" isActive: "+isActive);
+
+        if (MLecs.authenticateUser(LecEmail, LecPassword, isActive)!=null){
+
+            if(isActive.equals("1")){
+                result.put("responseCode", "200");
+            }else{
+                result.put("responseCode", "202");
+            }
 
         }else {
             result.put("responseCode", "201");

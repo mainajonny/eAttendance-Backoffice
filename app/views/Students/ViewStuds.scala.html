@@ -39,16 +39,17 @@
                     "mDataProp": null,
                     "mRender": function(obj) {
                         var sReturn = obj.gid;
-                        var status=   obj.status;
+                        var status = obj.isActive;
                         if(status==1){
-                            var deactivateButton = "<a class='hidden-xs' href='/?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+"><button class='btn btn-success btn-xs'><i class='fa fa-check'></i></button> </a>";
-                            return  deactivateButton;
-                        }else{
-                            var sReturn = obj.gid;
-                            var activateButton = "<a class='hidden-xs' href='/?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+"><button class='btn btn-danger btn-xs'><i class='fa fa-close'></i></button></a>";
-                            return  activateButton;
 
-                        }}
+                            var deactivateButton = "<a class='hidden-xs' href='/DeactivateStud?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+"><button class='btn btn-danger btn-xs'>DEACTIVATE<i class='fa fa-close'/></button></a>";
+                            return  deactivateButton;
+                        }
+                        else{
+                            var activateButton = "<a class='hidden-xs'  href='/ActivateStud?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+"><button class='btn btn-success btn-xs'>ACTIVATE<i class='fa fa-check'/></button></a>";
+                            return  activateButton;
+                        }
+                    }
                 },
             ]
 

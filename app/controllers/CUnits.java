@@ -66,13 +66,33 @@ public class CUnits extends Controller {
         return redirect(routes.CUnits.renderViewUnits());
     }
 
-    public static  Result deleteUnit(Long id){
+    public static Result ActivateUnit(String id){
+        System.out.println("activate"+ id);
+        MUnits mUnits = new MUnits();
+        mUnits.fid = Long.valueOf(id);
+        mUnits.isActive = "1";
+        mUnits.update();
+
+        return redirect(routes.CUnits.renderViewUnits());
+    }
+
+    public static Result DeactivateUnit(String id) {
+        System.out.println("Deactivate" + id);
+        MUnits mUnits = new MUnits();
+        mUnits.fid = Long.valueOf(id);
+        mUnits.isActive = "0";
+        mUnits.update();
+
+        return redirect(routes.CUnits.renderViewUnits());
+    }
+
+    /*public static  Result deleteUnit(Long id){
 
         MUnits mUnits=MUnits.findUnitById(id);
         mUnits.delete();
 
         return  redirect(routes.CUnits.renderViewUnits());
-    }
+    }*/
 
     public static Result unitslist() {
 
@@ -139,6 +159,7 @@ public class CUnits extends Controller {
             row.put("UnitName", cc.UnitName);
             row.put("UnitCode", cc.UnitCode);
             row.put("UnitProg", cc.UnitProg);
+            row.put("isActive", cc.isActive);
             row.put("fid", cc.fid);
             anc.add(row);
         }

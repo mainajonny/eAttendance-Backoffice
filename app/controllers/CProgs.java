@@ -66,13 +66,33 @@ public class CProgs extends Controller {
         return redirect(routes.CProgs.renderViewProgs());
     }
 
-    public static  Result deleteProg(Long id){
+    public static Result ActivateProg(String id){
+        System.out.println("activate"+ id);
+        MProgs mProgs = new MProgs();
+        mProgs.eid = Long.valueOf(id);
+        mProgs.isActive = "1";
+        mProgs.update();
+
+        return redirect(routes.CProgs.renderViewProgs());
+    }
+
+    public static Result DeactivateProg(String id) {
+        System.out.println("Deactivate" + id);
+        MProgs mProgs = new MProgs();
+        mProgs.eid = Long.valueOf(id);
+        mProgs.isActive = "0";
+        mProgs.update();
+
+        return redirect(routes.CProgs.renderViewProgs());
+    }
+
+    /*public static  Result deleteProg(Long id){
 
         MProgs mProgs=MProgs.findProgById(id);
         mProgs.delete();
 
         return  redirect(routes.CProgs.renderViewProgs());
-    }
+    }*/
 
     public static Result progslist() {
 
@@ -139,6 +159,7 @@ public class CProgs extends Controller {
             row.put("ProgName", cc.ProgName);
             row.put("ProgDept", cc.ProgDept);
             row.put("ProgLevel", cc.ProgLevel);
+            row.put("isActive", cc.isActive);
             row.put("eid", cc.eid);
             anc.add(row);
         }

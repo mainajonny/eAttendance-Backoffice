@@ -65,13 +65,33 @@ public class CUsers extends Controller {
         return redirect(routes.CUsers.renderViewUsers());
     }
 
-    public static  Result deleteUsers(Long id){
+    public static Result ActivateUser(String id){
+        System.out.println("activate"+ id);
+        MUsers mUsers = new MUsers();
+        mUsers.aid = Long.valueOf(id);
+        mUsers.isActive = "1";
+        mUsers.update();
+
+        return redirect(routes.CUsers.renderViewUsers());
+    }
+
+    public static Result DeactivateUser(String id) {
+        System.out.println("Deactivate" + id);
+        MUsers mUsers = new MUsers();
+        mUsers.aid = Long.valueOf(id);
+        mUsers.isActive = "0";
+        mUsers.update();
+
+        return redirect(routes.CUsers.renderViewUsers());
+    }
+
+    /*public static  Result deleteUsers(Long id){
 
         MUsers mUsers=MUsers.findUserById(id);
         mUsers.delete();
 
         return  redirect(routes.CUsers.renderViewUsers());
-    }
+    }*/
 
     public static Result userslist() {
 
@@ -134,6 +154,7 @@ public class CUsers extends Controller {
             //    System.out.println("in data table fetch: " + cc.RoomName);
             row.put("Email", cc.Email);
             row.put("Password", cc.Password);
+            row.put("isActive", cc.isActive);
             row.put("aid", cc.aid);
             anc.add(row);
         }

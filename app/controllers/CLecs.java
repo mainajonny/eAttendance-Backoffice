@@ -73,13 +73,33 @@ public class CLecs extends Controller {
         return redirect(routes.CLecs.renderViewLecs());
     }
 
-    public static  Result deleteLec(Long id){
+    public static Result ActivateLec(String id){
+        System.out.println("activate"+ id);
+        MLecs mLecs = new MLecs();
+        mLecs.cid = Long.valueOf(id);
+        mLecs.isActive = "1";
+        mLecs.update();
+
+        return redirect(routes.CLecs.renderViewLecs());
+    }
+
+    public static Result DeactivateLec(String id) {
+        System.out.println("Deactivate" + id);
+        MLecs mLecs = new MLecs();
+        mLecs.cid = Long.valueOf(id);
+        mLecs.isActive = "0";
+        mLecs.update();
+
+        return redirect(routes.CLecs.renderViewLecs());
+    }
+
+    /*public static  Result deleteLec(Long id){
 
         MLecs mLecs=MLecs.findLecById(id);
         mLecs.delete();
 
         return  redirect(routes.CLecs.renderViewLecs());
-    }
+    }*/
 
     public static Result lecslist() {
 
@@ -154,6 +174,7 @@ public class CLecs extends Controller {
             row.put("LecDept", cc.LecDept);
             row.put("LecEmail", cc.LecEmail);
             row.put("LecPassword", cc.LecPassword);
+            row.put("isActive", cc.isActive);
             row.put("cid", cc.cid);
             anc.add(row);
         }

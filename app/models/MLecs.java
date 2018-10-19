@@ -35,8 +35,8 @@ public class MLecs extends Model {
     @Constraints.Required
     public String isActive;
 
-    public static MLecs authenticateUser(String Email, String Pass){
-        return  MLecs.findLecturers.where().eq("LecEmail", Email).eq("LecPassword", Pass).findUnique();
+    public static MLecs authenticateUser(String Email, String Pass, String isActive){
+        return  MLecs.findLecturers.where().eq("LecEmail", Email).eq("LecPassword", Pass).eq("isActive", isActive).findUnique();
     }
 
     public static Model.Finder<Long, MLecs> findLecturers = new Model.Finder<Long, MLecs>(Long.class, MLecs.class);

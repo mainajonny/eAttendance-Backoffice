@@ -15,7 +15,9 @@ GET         /deptslist              controllers.CDept.deptslist()
 GET         /renderViewDepts        controllers.CDept.renderViewDepts()
 POST        /EditDepartment         controllers.CDept.EditDepartment(id:Long)
 GET         /renderEditDept         controllers.CDept.renderEditDept(id:Long)
-GET         /deleteDept             controllers.CDept.deleteDept(id:Long)
+#GET         /deleteDept             controllers.CDept.deleteDept(id:Long)
+GET         /DeactivateDept         controllers.CDept.DeactivateDept(id: String)
+GET         /ActivateDept           controllers.CDept.ActivateDept(id: String)
 
 #Faculty
 GET         /renderFaculty             controllers.CFaculty.renderFaculty()
@@ -24,7 +26,9 @@ GET         /facultylist               controllers.CFaculty.facultylist()
 GET         /renderViewFaculty         controllers.CFaculty.renderViewFaculty()
 POST        /EditFaculty               controllers.CFaculty.EditFaculty(id:Long)
 GET         /renderEditFaculty         controllers.CFaculty.renderEditFaculty(id:Long)
-GET         /deleteFaculty             controllers.CFaculty.deleteFaculty(id:Long)
+#GET         /deleteFaculty             controllers.CFaculty.deleteFaculty(id:Long)
+GET         /DeactivateFaculty         controllers.CFaculty.DeactivateFaculty(id: String)
+GET         /ActivateFaculty           controllers.CFaculty.ActivateFaculty(id: String)
 
 #Lecs
 GET         /renderLecs            controllers.CLecs.renderLecs()
@@ -33,7 +37,9 @@ GET         /lecslist              controllers.CLecs.lecslist()
 GET         /renderViewLecs        controllers.CLecs.renderViewLecs()
 POST        /EditLecturer          controllers.CLecs.EditLecturer(id:Long)
 GET         /renderEditLec         controllers.CLecs.renderEditLec(id:Long)
-GET         /deleteLec             controllers.CLecs.deleteLec(id:Long)
+#GET         /deleteLec             controllers.CLecs.deleteLec(id:Long)
+GET         /DeactivateLec         controllers.CLecs.DeactivateLec(id: String)
+GET         /ActivateLec           controllers.CLecs.ActivateLec(id: String)
 
 #Prog
 GET         /renderProgs            controllers.CProgs.renderProgs()
@@ -42,7 +48,9 @@ GET         /progslist              controllers.CProgs.progslist()
 GET         /renderViewProgs        controllers.CProgs.renderViewProgs()
 POST        /EditProgramme          controllers.CProgs.EditProgramme(id:Long)
 GET         /renderEditProg         controllers.CProgs.renderEditProg(id:Long)
-GET         /deleteProg             controllers.CProgs.deleteProg(id:Long)
+#GET         /deleteProg             controllers.CProgs.deleteProg(id:Long)
+GET         /DeactivateProg         controllers.CProgs.DeactivateProg(id: String)
+GET         /ActivateProg           controllers.CProgs.ActivateProg(id: String)
 
 #Studs
 GET         /renderStuds            controllers.CStud.renderStuds()
@@ -51,7 +59,9 @@ GET         /studslist              controllers.CStud.studslist()
 GET         /renderViewStuds        controllers.CStud.renderViewStuds()
 POST        /EditStudent            controllers.CStud.EditStudent(id:Long)
 GET         /renderEditStudent      controllers.CStud.renderEditStudent(id:Long)
-GET         /deleteStudent          controllers.CStud.deleteStudent(id:Long)
+#GET         /deleteStudent          controllers.CStud.deleteStudent(id:Long)
+GET         /DeactivateStud         controllers.CStud.DeactivateStud(id: String)
+GET         /ActivateStud           controllers.CStud.ActivateStud(id: String)
 
 #Units
 GET         /renderUnits            controllers.CUnits.renderUnits()
@@ -60,7 +70,9 @@ GET         /unitslist              controllers.CUnits.unitslist()
 GET         /renderViewUnits        controllers.CUnits.renderViewUnits()
 POST        /EditUnit               controllers.CUnits.EditUnit(id:Long)
 GET         /renderEditUnit         controllers.CUnits.renderEditUnit(id:Long)
-GET         /deleteUnit             controllers.CUnits.deleteUnit(id:Long)
+#GET         /deleteUnit             controllers.CUnits.deleteUnit(id:Long)
+GET         /DeactivateUnit         controllers.CUnits.DeactivateUnit(id: String)
+GET         /ActivateUnit           controllers.CUnits.ActivateUnit(id: String)
 
 #AssignUnits
 GET         /renderAssignedUnits            controllers.CAssignUnit.renderAssignedUnits()
@@ -69,7 +81,7 @@ GET         /assignedunitslist              controllers.CAssignUnit.assignedunit
 GET         /renderViewAssignedUnits        controllers.CAssignUnit.renderViewAssignedUnits()
 #POST        /EditAssignedUnit               controllers.CAssignUnit.EditAssignedUnit(id:Long)
 #GET         /renderEditAssignedUnit         controllers.CAssignUnit.renderEditAssignedUnit(id:Long)
-GET         /deleteAssignedUnit             controllers.CAssignUnit.deleteAssignedUnit(id:Long)
+#GET         /deleteAssignedUnit             controllers.CAssignUnit.deleteAssignedUnit(id:Long)
 
 #Users
 GET         /renderUsers               controllers.CUsers.renderUsers()
@@ -78,7 +90,9 @@ GET         /userslist                 controllers.CUsers.userslist()
 GET         /renderViewUsers           controllers.CUsers.renderViewUsers()
 POST        /EditUsers                 controllers.CUsers.EditUsers(id:Long)
 GET         /renderEditUsers           controllers.CUsers.renderEditUsers(id:Long)
-GET         /deleteUsers               controllers.CUsers.deleteUsers(id:Long)
+#GET         /deleteUsers               controllers.CUsers.deleteUsers(id:Long)
+GET         /DeactivateUser         controllers.CUsers.DeactivateUser(id: String)
+GET         /ActivateUser           controllers.CUsers.ActivateUser(id: String)
 
 #StudentAttendance
 #GET         /renderStudentAttendance            controllers.CStudentAttendance.renderStudentAttendance()

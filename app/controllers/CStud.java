@@ -74,13 +74,33 @@ public class CStud extends Controller {
         return redirect(routes.CStud.renderViewStuds());
     }
 
-    public static  Result deleteStudent(Long id){
+    public static Result ActivateStud(String id){
+        System.out.println("activate"+ id);
+        MStud mStud = new MStud();
+        mStud.gid = Long.valueOf(id);
+        mStud.isActive = "1";
+        mStud.update();
+
+        return redirect(routes.CStud.renderViewStuds());
+    }
+
+    public static Result DeactivateStud(String id) {
+        System.out.println("Deactivate" + id);
+        MStud mStud = new MStud();
+        mStud.gid = Long.valueOf(id);
+        mStud.isActive = "0";
+        mStud.update();
+
+        return redirect(routes.CStud.renderViewStuds());
+    }
+
+    /*public static  Result deleteStudent(Long id){
 
         MStud mStud=MStud.findStudentById(id);
         mStud.delete();
 
         return  redirect(routes.CStud.renderViewStuds());
-    }
+    }*/
 
     public static Result studslist() {
 
@@ -155,6 +175,7 @@ public class CStud extends Controller {
             row.put("Prog", cc.Prog);
             row.put("Year", cc.Year);
             row.put("Sem", cc.Sem);
+            row.put("isActive", cc.isActive);
             row.put("gid", cc.gid);
             anc.add(row);
         }

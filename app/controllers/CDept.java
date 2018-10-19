@@ -68,13 +68,33 @@ public class CDept extends Controller{
         return redirect(routes.CDept.renderViewDepts());
     }
 
-    public static  Result deleteDept(Long id){
+    public static Result ActivateDept(String id){
+        System.out.println("activate"+ id);
+        MDept mDept = new MDept();
+        mDept.bid = Long.valueOf(id);
+        mDept.isActive = "1";
+        mDept.update();
+
+        return redirect(routes.CDept.renderViewDepts());
+    }
+
+    public static Result DeactivateDept(String id) {
+        System.out.println("Deactivate" + id);
+        MDept mDept = new MDept();
+        mDept.bid = Long.valueOf(id);
+        mDept.isActive = "0";
+        mDept.update();
+
+        return redirect(routes.CDept.renderViewDepts());
+    }
+
+    /*public static  Result deleteDept(Long id){
 
         MDept mDept=MDept.findDeptById(id);
         mDept.delete();
 
         return  redirect(routes.CDept.renderViewDepts());
-    }
+    }*/
 
     public static Result deptslist() {
 
@@ -141,6 +161,7 @@ public class CDept extends Controller{
             row.put("DeptName", cc.DeptName);
             row.put("DeptHead", cc.DeptHead);
             row.put("DeptFaculty", cc.DeptFaculty);
+            row.put("isActive", cc.isActive);
             row.put("bid", cc.bid);
             anc.add(row);
         }

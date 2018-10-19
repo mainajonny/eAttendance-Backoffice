@@ -67,13 +67,33 @@ public class CFaculty extends Controller {
         return redirect(routes.CFaculty.renderViewFaculty());
     }
 
-    public static  Result deleteFaculty(Long id){
+    public static Result ActivateFaculty(String id){
+        System.out.println("activate"+ id);
+        MFaculty mFaculty = new MFaculty();
+        mFaculty.did = Long.valueOf(id);
+        mFaculty.isActive = "1";
+        mFaculty.update();
+
+        return redirect(routes.CFaculty.renderViewFaculty());
+    }
+
+    public static Result DeactivateFaculty(String id) {
+        System.out.println("Deactivate" + id);
+        MFaculty mFaculty = new MFaculty();
+        mFaculty.did = Long.valueOf(id);
+        mFaculty.isActive = "0";
+        mFaculty.update();
+
+        return redirect(routes.CFaculty.renderViewFaculty());
+    }
+
+    /*public static  Result deleteFaculty(Long id){
 
         MFaculty mFaculty=MFaculty.findFacultyById(id);
         mFaculty.delete();
 
         return  redirect(routes.CFaculty.renderViewFaculty());
-    }
+    }*/
 
     public static Result facultylist() {
 
@@ -140,6 +160,7 @@ public class CFaculty extends Controller {
             row.put("FName", cc.FName);
             row.put("FInt", cc.FInt);
             row.put("FMajor", cc.FMajor);
+            row.put("isActive", cc.isActive);
             row.put("did", cc.did);
             anc.add(row);
         }
