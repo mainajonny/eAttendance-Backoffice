@@ -39,17 +39,16 @@ public class MobileApi extends Controller {
 
             if (MLecs.authenticateUser(LecEmail, LecPassword, isActive)!=null){
 
-                switch (isActive) {
-                    case "1":
-                        result.put("responseCode", "200");
-                        break;
-                    case "0":
-                        result.put("responseCode", "202");
-                        break;
-                    default:
-                        result.put("responseCode", "201");
-                        break;
+                if (isActive.equals("1")) {
+                    result.put("responseCode", "200");
+
+                }else {
+                    result.put("responseCode", "202");
+
                 }
+
+            }else{
+                result.put("responseCode", "201");
 
             }
 
