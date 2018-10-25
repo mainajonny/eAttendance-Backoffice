@@ -96,10 +96,11 @@ GET         /DeactivateUser         controllers.CUsers.DeactivateUser(id: String
 GET         /ActivateUser           controllers.CUsers.ActivateUser(id: String)
 
 #StudentAttendance
-#GET         /renderStudentAttendance            controllers.CStudentAttendance.renderStudentAttendance()
-POST        /addAttendance                      controllers.CStudentAttendance.addAttendance()
+GET         /renderStudentAttendance            controllers.CStudentAttendance.renderStudentAttendance()
+#POST        /addAttendance                      controllers.CStudentAttendance.addAttendance()
 GET         /attendancelist                     controllers.CStudentAttendance.attendancelist()
-GET         /renderViewStudentAttendance        controllers.CStudentAttendance.renderViewStudentAttendance()
+GET         /renderViewStudentAttendance        controllers.CStudentAttendance.renderViewStudentAttendance(id: Long)
+POST        /GetUnit                            controllers.CStudentAttendance.GetUnit()
 
 #MobileApis
 POST         /AuthenticateUser              controllers.MobileApi.AuthenticateUser()

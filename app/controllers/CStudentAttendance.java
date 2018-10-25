@@ -23,15 +23,26 @@ import java.util.Map;
  */
 public class CStudentAttendance extends Controller{
 
-    /*public static Result renderStudentAttendance(){
-        return ok(AddStudentAttendance.render("Students attendance"));
-    }*/
+    public static Result renderStudentAttendance(){
+        return ok(SelectUnit.render("View students attendance", MUnits.unitoptions()));
+    }
 
-    public static Result renderViewStudentAttendance(){
+    public static Result renderViewStudentAttendance(Long id){
+
+        MStudentAttendance.findStudentByUnit(String.valueOf(MUnits.findUnitById(id)));
         return ok(ViewStudentAttendance.render("View students attendance"));
     }
 
-    public static Result addAttendance(){
+    public static Result GetUnit(){
+        DynamicForm requestform = Form.form().bindFromRequest();
+        String Unit = requestform.get("Unit");
+
+        Long Id = Long.valueOf(Unit);
+
+        return redirect(routes.CStudentAttendance.renderViewStudentAttendance(Id));
+    }
+
+    /*public static Result addAttendance(){
 
         DynamicForm requestform = Form.form().bindFromRequest();
         String RegNumber = requestform.get("RegNumber");
@@ -59,8 +70,8 @@ public class CStudentAttendance extends Controller{
         attendance.isUploaded="1";
         attendance.isActive="1";
         attendance.save();
-        return renderViewStudentAttendance();
-    }
+        return redirect(routes.CStudentAttendance.renderViewStudentAttendance());
+    }*/
 
     public static Result attendancelist() {
 

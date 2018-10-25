@@ -1,0 +1,42 @@
+
+@(message: String, unitoptions: Map[String, String])
+
+@main("Select Unit") {
+
+<form method="post" class="panel" role="form" action="@routes.CStudentAttendance.GetUnit()">
+    <div class="wrapper">
+
+        <div class="page-head">
+            <h3 class="m-b-less">
+                Edit Unit
+            </h3>
+
+
+            <br>
+            <br>
+            <div class="form-group clearfix">
+                <label class="col-lg-3 col-md-4 control-label">Unit</label>
+
+                <div class="col-lg-9">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="Unit" >
+                        @for((key, value) <- unitoptions) {
+                        @if(unitoptions!=null){
+                        <option value="@key"> @value </option>
+                        }else{
+                        <option>No Unit Found</option>
+                        }
+                        }
+                    </select>
+                </div>
+
+
+            <br>
+            <br>
+            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="View attendance"></p>
+        </div>
+    </div>
+
+</form>
+
+
+}
