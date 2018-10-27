@@ -2,8 +2,42 @@
 @(message: String, unitoptions: Map[String, String])
 
 @main("Select Unit") {
+<script type="text/javascript">
+    /* Table initialisation */
+    //
+    $(document).ready(function() {
 
-<form method="post" class="panel" role="form" action="@routes.CStudentAttendance.GetUnit()">
+        $('#attendance_table').DataTable( {
+            "PaginationType": "bootstrap",
+            "responsive": true,
+            "bProcessing": true,
+            "aaSorting": [[ 0, "asc" ]],
+            "bServerSide": true,
+            "mDataProp": null,
+            //change this ...
+            "sAjaxSource": "@routes.CStudentAttendance.renderViewStudentAttendance()",
+            dom: '<"tbl-top clearfix"lfr>,t,<"tbl-footer clearfix"<"tbl-info pull-left"i><"tbl-pagin pull-right"p>>',
+            "aoColumns": [
+                {
+                    "mDataProp": null,
+                    "mRender": function(obj) {
+                        var sReturn = obj.fid;
+                        var returnButton = "<a class='hidden-xs' href='/renderEditUnit?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+">  <button class='btn btn-primary btn-xs'>AAAAAAA<i class='fa fa-pencil'></i></button> </a>";
+                        return  returnButton;
+
+                    }
+
+                },
+
+            ]
+
+        } );
+
+    } );
+
+</script>
+
+<form method="post" class="panel" role="form" action="@routes.CStudentAttendance.renderViewStudentAttendance()">
     <div class="wrapper">
 
         <div class="page-head">

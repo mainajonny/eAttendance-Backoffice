@@ -14,7 +14,7 @@ import play.mvc.Result;
 
 import java.util.Map;
 
-import static models.MStudentAttendance.findStudentByRegNo;
+import static models.MStudentAttendance.findStudentByRegNoUnitandLec;
 
 
 /**
@@ -130,10 +130,10 @@ public class MobileApi extends Controller {
 
         String StudentName=MStud.findStudentByRegNo(RegNo).StudName;
 
-            if(findStudentByRegNo(RegNumber) != null){
+            if(findStudentByRegNoUnitandLec(RegNumber, Unit, Lecturer) != null){
 
                     //get the id of that column you want to update
-                    Long aid= MStudentAttendance.findStudentByRegNo(RegNumber).yid;
+                    Long aid= MStudentAttendance.findStudentByRegNoUnitandLec(RegNumber, Unit, Lecturer).yid;
 
                     MStudentAttendance mStudentAttendance=new MStudentAttendance();
                     //update the attendance at that column with that id

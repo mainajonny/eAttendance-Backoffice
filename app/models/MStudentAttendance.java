@@ -51,12 +51,12 @@ public class MStudentAttendance extends Model{
         return findStudentAttendance.all();
     }
 
-    public static MStudentAttendance findStudentByRegNo(String RegNumber) {
-        return findStudentAttendance.where().eq("RegNumber", RegNumber).findUnique();
+    public static MStudentAttendance findStudentByRegNoUnitandLec(String RegNumber, String Unit, String Lecturer) {
+        return findStudentAttendance.where().eq("RegNumber", RegNumber).eq("Unit", Unit).eq("Lecturer", Lecturer).findUnique();
     }
 
-    public static MStudentAttendance findStudentByUnit(String Unit) {
-        return findStudentAttendance.where().eq("Unit", Unit).findUnique();
+    public static List<MStudentAttendance> findStudentsByUnit(String Unit) {
+        return findStudentAttendance.where().eq("Unit", Unit).findList();
     }
 
     public static MStudentAttendance findStudentById(Long yid) {

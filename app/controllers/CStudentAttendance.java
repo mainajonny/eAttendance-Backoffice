@@ -23,24 +23,26 @@ import java.util.Map;
  */
 public class CStudentAttendance extends Controller{
 
-    public static Result renderStudentAttendance(){
+    /*public static Result renderStudentAttendance(){
+
         return ok(SelectUnit.render("View students attendance", MUnits.unitoptions()));
-    }
+    }*/
 
-    public static Result renderViewStudentAttendance(Long id){
+    public static Result renderViewStudentAttendance(){
 
-        MStudentAttendance.findStudentByUnit(String.valueOf(MUnits.findUnitById(id)));
+        /*String unit = String.valueOf(id);
+        MStudentAttendance.findStudentsByUnit(String.valueOf(unit));*/
         return ok(ViewStudentAttendance.render("View students attendance"));
     }
 
-    public static Result GetUnit(){
+    /*public static Result GetUnit(){
         DynamicForm requestform = Form.form().bindFromRequest();
         String Unit = requestform.get("Unit");
 
         Long Id = Long.valueOf(Unit);
 
         return redirect(routes.CStudentAttendance.renderViewStudentAttendance(Id));
-    }
+    }*/
 
     /*public static Result addAttendance(){
 
@@ -85,12 +87,12 @@ public class CStudentAttendance extends Controller{
         /**
          * Get sorting order and column
          */
-        String sortBy = "RegNumber";
+        String sortBy = "Unit";
         String order = params.get("sSortDir_0")[0];
 
         switch (Integer.valueOf(params.get("iSortCol_0")[0])) {
             case 0:
-                sortBy = "RegNumber";
+                sortBy = "Unit";
                 break;
             case 1:
                 sortBy = "yid";
@@ -99,7 +101,7 @@ public class CStudentAttendance extends Controller{
                 sortBy = "StudentName";
                 break;
             case 3:
-                sortBy = "Unit";
+                sortBy = "RegNumber";
                 break;
             case 4:
                 sortBy = "StudentProg";
