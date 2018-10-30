@@ -110,7 +110,7 @@ public class MobileApi extends Controller {
 
             return ok(result);
 
-        }
+    }
 
     public static Result uploadattendance(){
 
@@ -135,11 +135,16 @@ public class MobileApi extends Controller {
                     //get the id of that column you want to update
                     Long aid= MStudentAttendance.findStudentByRegNoUnitandLec(RegNumber, Unit, Lecturer).yid;
 
+                Integer PrevAtt = Integer.valueOf(findStudentByRegNoUnitandLec(RegNumber, Unit, Lecturer).Attendance);
+                System.out.println("Previous attendance..."+PrevAtt);
+                Integer NewAtt = PrevAtt + 1;
+
                     MStudentAttendance mStudentAttendance=new MStudentAttendance();
                     //update the attendance at that column with that id
                     mStudentAttendance.yid=aid;
-                    mStudentAttendance.Attendance=Attendance;
+                    mStudentAttendance.Attendance= String.valueOf(NewAtt);
                     mStudentAttendance.update();
+                System.out.println("New attendance..."+NewAtt);
 
                 result.put("responseCode", "204");
             }
