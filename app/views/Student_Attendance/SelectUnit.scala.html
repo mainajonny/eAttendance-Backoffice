@@ -2,60 +2,29 @@
 @(message: String, unitoptions: Map[String, String])
 
 @main("Select Unit") {
-<script type="text/javascript">
-    /* Table initialisation */
-    //
-    $(document).ready(function() {
+<script src="@routes.Assets.at("javascripts/angular.min.js")"></script>
 
-        $('#attendance_table').DataTable( {
-            "PaginationType": "bootstrap",
-            "responsive": true,
-            "bProcessing": true,
-            "aaSorting": [[ 0, "asc" ]],
-            "bServerSide": true,
-            "mDataProp": null,
-            //change this ...
-            "sAjaxSource": "@routes.CStudentAttendance.renderViewStudentAttendance()",
-            dom: '<"tbl-top clearfix"lfr>,t,<"tbl-footer clearfix"<"tbl-info pull-left"i><"tbl-pagin pull-right"p>>',
-            "aoColumns": [
-                {
-                    "mDataProp": null,
-                    "mRender": function(obj) {
-                        var sReturn = obj.fid;
-                        var returnButton = "<a class='hidden-xs' href='/renderEditUnit?id="+sReturn+"' id='cedit' style='float: center'  data-title="+sReturn+">  <button class='btn btn-primary btn-xs'>AAAAAAA<i class='fa fa-pencil'></i></button> </a>";
-                        return  returnButton;
+<div ng-app="myApp" ng-controller="myCtrl">
 
-                    }
-
-                },
-
-            ]
-
-        } );
-
-    } );
-
-</script>
-
-<form method="post" class="panel" role="form" action="@routes.CStudentAttendance.renderViewStudentAttendance()">
+<form method="post" class="panel" role="form" ng-submit="search()">
     <div class="wrapper">
 
         <div class="page-head">
             <h3 class="m-b-less">
-                Edit Unit
+                Select Unit
             </h3>
 
 
             <br>
             <br>
             <div class="form-group clearfix">
-                <label class="col-lg-3 col-md-4 control-label">Unit</label>
+                <label class="col-lg-2 col-md-3 control-label">Unit</label>
 
-                <div class="col-lg-9">
-                    <select class="form-control  select2"  data-activates='dropdown1' name="Unit" >
+                <div class="col-lg-7 col-md-6">
+                    <select class="form-control  select2"  data-activates='dropdown1' name="Unit" ng-model="Unit">
                         @for((key, value) <- unitoptions) {
                         @if(unitoptions!=null){
-                        <option value="@key"> @value </option>
+                        <option value="@value"> @value </option>
                         }else{
                         <option>No Unit Found</option>
                         }
@@ -63,14 +32,137 @@
                     </select>
                 </div>
 
+                <p class="submit col-lg-3 col-md-3">
+                    <input  class="btn btn-send m-b-10" type="submit" name="commit" value="View attendance" ng-click="search()">
+                </p>
 
             <br>
             <br>
-            <p class="submit"><input  class="btn btn-primary m-b-10" type="submit" name="commit" value="View attendance"></p>
+
         </div>
+
+            <table class="table responsive-data-table data-table" ng-show="attendance" >
+                <thead>
+                <tr>
+                    <th>yid</th>
+                    <th>StudentName</th>
+                    <th>RegNumber</th>
+                    <th>StudentProg</th>
+                    <th>Unit</th>
+                    <th>UnitProg</th>
+                    <th>Lecturer</th>
+                    <th>Attendance</th>
+                    <th>isUploaded</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>{{attendance.yid}}</td>
+                    <td>{{attendance.StudentName}}</td>
+                    <td>{{attendance.RegNumber}}</td>
+                    <td>{{attendance.StudentProg}}</td>
+                    <td>{{attendance.Unit}}</td>
+                    <td>{{attendance.UnitProg}}</td>
+                    <td>{{attendance.Lecturer}}</td>
+                    <td>{{attendance.Attendance}}</td>
+                    <td>{{attendance.isUploaded}}</td>
+                </tr>
+            </table>
+
     </div>
 
 </form>
+
+</div>
+
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.attendance = null;
+        //$scope.isEditing= false;
+        $scope.search = function (){
+
+            if ($scope.Unit == null || $scope.Unit == ""){
+
+                swal({
+                    type: 'warning',
+                    title: 'Please select a unit',
+                    showConfirmButton: true
+                });
+            }else {
+                $http({
+                    url: 'http://localhost:9000/GetUnit ',
+                    method: "POST",
+                    data: {"Unit": $scope.Unit}
+                })
+                    .then(function (response) {
+
+                        if(response.data.responseCode == "200"){
+                            swal({
+                                type: 'error',
+                                title: 'No attendance found for this unit',
+                                showConfirmButton: true
+                            });
+                        }else{
+                            $scope.attendance =response.data.responseCode;
+                            //$scope.isEditing = true;
+                        }
+                    });
+            }
+        };
+
+
+        $scope.cancel = function () {
+            $scope.Unit = "";
+            //$scope.isEditing = false;
+            $scope.attendance = null;
+        };
+
+
+        $scope.sub = function (){
+
+            $http({
+                url: 'http://localhost:9000/Pass_details ',
+                method: "POST",
+                data: {"Unit": $scope.Unit}
+            })
+                .then(function (response) {
+
+                    if(response.data.responseCode == "501"){
+                        swal({
+                            type: 'error',
+                            title: 'Failed to update record',
+                            showConfirmButton: true
+                        });
+                    }else if(response.data.responseCode == "502"){
+                        swal({
+                            type: 'warning',
+                            title: 'Record already updated',
+                            showConfirmButton: true
+                        });
+                    }else{
+                        swal({
+                            position: 'top-end',
+                            type: 'success',
+                            title: 'Record updated Successfully',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+
+                        $scope.search();
+
+                    }
+
+                });
+        }
+    });
+</script>
+
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="@routes.Assets.at("package/dist/sweetalert2.js")"></script>
+<script src="@routes.Assets.at("package/dist/sweetalert2.all.js")"></script>
+<script src="@routes.Assets.at("package/dist/sweetalert2.css")"></script>
 
 
 }

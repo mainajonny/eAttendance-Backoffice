@@ -23,10 +23,10 @@ import java.util.Map;
  */
 public class CStudentAttendance extends Controller{
 
-    /*public static Result renderStudentAttendance(){
+    public static Result renderStudentAttendance(){
 
         return ok(SelectUnit.render("View students attendance", MUnits.unitoptions()));
-    }*/
+    }
 
     public static Result renderViewStudentAttendance(){
 
@@ -35,45 +35,29 @@ public class CStudentAttendance extends Controller{
         return ok(ViewStudentAttendance.render("View students attendance"));
     }
 
-    /*public static Result GetUnit(){
+    public static Result GetUnit(){
+        ObjectNode result;
+        result = Json.newObject();
+
         DynamicForm requestform = Form.form().bindFromRequest();
         String Unit = requestform.get("Unit");
 
-        Long Id = Long.valueOf(Unit);
+        //Long Id = Long.valueOf(Unit);
+        //String student = MStudentAttendance.findStudByUnit(Unit).RegNumber;
+        //String lecturer = MStudentAttendance.findStudByUnit(Unit).Lecturer;
 
-        return redirect(routes.CStudentAttendance.renderViewStudentAttendance(Id));
-    }*/
+        if(MStudentAttendance.findStudentsByUnit(Unit).size() > 0){
+            Logger.info("Checking...: "+Unit);
+            result.put("responseCode", Json.toJson(MStudentAttendance.findStudentsByUnit(Unit)));
 
-    /*public static Result addAttendance(){
+        }else{
+            Logger.info("No attendance for...: "+Unit);
+            result.put("responseCode", Json.toJson("200"));
+        }
 
-        DynamicForm requestform = Form.form().bindFromRequest();
-        String RegNumber = requestform.get("RegNumber");
-        String Unit = requestform.get("Unit");
-        //String StudentProg = requestform.get("StudentProg");
-        String Lecturer = requestform.get("Lecturer");
-        String UnitProg = requestform.get("UnitProg");
-        String Attendance = requestform.get("Attendance");
-        String StudentProg = MStud.findProgByStudent(RegNumber).Prog;
 
-        String RegNo=String.valueOf(RegNumber);
-
-        String StudentName=MStud.findStudentByRegNo(RegNo).StudName;
-
-        System.out.print("StudentName:  "+StudentName);
-
-        MStudentAttendance attendance = new MStudentAttendance();
-        attendance.StudentName=StudentName;
-        attendance.RegNumber=RegNumber;
-        attendance.Unit=Unit;
-        attendance.StudentProg =StudentProg;
-        attendance.UnitProg =UnitProg;
-        attendance.Lecturer =Lecturer;
-        attendance.Attendance=Attendance;
-        attendance.isUploaded="1";
-        attendance.isActive="1";
-        attendance.save();
-        return redirect(routes.CStudentAttendance.renderViewStudentAttendance());
-    }*/
+        return  ok(result);
+    }
 
     public static Result attendancelist() {
 
