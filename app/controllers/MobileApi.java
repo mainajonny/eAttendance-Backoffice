@@ -121,14 +121,16 @@ public class MobileApi extends Controller {
         String RegNumber = requestform.get("RegNumber");
         String Unit = requestform.get("Unit");
         //String StudentProg = requestform.get("StudentProg");
-        String Lecturer = requestform.get("Lecturer");
+        String Lec = requestform.get("Lecturer");
         String UnitProg = requestform.get("UnitProg");
         String Attendance = requestform.get("Attendance");
         String StudentProg = MStud.findProgByStudent(RegNumber).Prog;
 
         String RegNo=String.valueOf(RegNumber);
+        String LecEmail=String.valueOf(Lec);
 
         String StudentName=MStud.findStudentByRegNo(RegNo).StudName;
+        String Lecturer=MLecs.findLecturerByEmail(LecEmail).LecName;
 
             if(findStudentByRegNoUnitandLec(RegNumber, Unit, Lecturer) != null){
 

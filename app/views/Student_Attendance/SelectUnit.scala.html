@@ -44,19 +44,16 @@
             <table class="table responsive-data-table data-table" ng-show="attendance" >
                 <thead>
                 <tr>
-                    <th>yid</th>
-                    <th>StudentName</th>
+                    <th>Student Name</th>
                     <th>RegNumber</th>
-                    <th>StudentProg</th>
+                    <th>Student Course</th>
                     <th>Unit</th>
-                    <th>UnitProg</th>
+                    <th>Course</th>
                     <th>Lecturer</th>
                     <th>Attendance</th>
-                    <th>isUploaded</th>
                 </tr>
                 </thead>
-                <tr>
-                    <td>{{attendance.yid}}</td>
+                <tr ng-repeat="attendance in attendance">
                     <td>{{attendance.StudentName}}</td>
                     <td>{{attendance.RegNumber}}</td>
                     <td>{{attendance.StudentProg}}</td>
@@ -64,7 +61,6 @@
                     <td>{{attendance.UnitProg}}</td>
                     <td>{{attendance.Lecturer}}</td>
                     <td>{{attendance.Attendance}}</td>
-                    <td>{{attendance.isUploaded}}</td>
                 </tr>
             </table>
 
@@ -104,7 +100,8 @@
                                 showConfirmButton: true
                             });
                         }else{
-                            $scope.attendance =response.data.responseCode;
+
+                            $scope.attendance = response.data.responseCode;
                             //$scope.isEditing = true;
                         }
                     });

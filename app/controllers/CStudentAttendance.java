@@ -30,8 +30,6 @@ public class CStudentAttendance extends Controller{
 
     public static Result renderViewStudentAttendance(){
 
-        /*String unit = String.valueOf(id);
-        MStudentAttendance.findStudentsByUnit(String.valueOf(unit));*/
         return ok(ViewStudentAttendance.render("View students attendance"));
     }
 
@@ -41,10 +39,6 @@ public class CStudentAttendance extends Controller{
 
         DynamicForm requestform = Form.form().bindFromRequest();
         String Unit = requestform.get("Unit");
-
-        //Long Id = Long.valueOf(Unit);
-        //String student = MStudentAttendance.findStudByUnit(Unit).RegNumber;
-        //String lecturer = MStudentAttendance.findStudByUnit(Unit).Lecturer;
 
         if(MStudentAttendance.findStudentsByUnit(Unit).size() > 0){
             Logger.info("Checking...: "+Unit);

@@ -59,10 +59,6 @@ public class MStudentAttendance extends Model{
         return findStudentAttendance.where().eq("Unit", Unit).findList();
     }
 
-    public static MStudentAttendance findStudByUnit(String Unit) {
-        return findStudentAttendance.where().eq("Unit", Unit).findUnique();
-    }
-
     public static MStudentAttendance findStudentById(Long yid) {
         return findStudentAttendance.where().eq("yid", yid).findUnique();
     }

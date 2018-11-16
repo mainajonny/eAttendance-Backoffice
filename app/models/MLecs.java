@@ -53,6 +53,10 @@ public class MLecs extends Model {
         return findLecturers.where().eq("LecEmail", LecEmail).findList();
     }
 
+    public static MLecs findLecturerByEmail(String LecEmail) {
+        return findLecturers.where().eq("LecEmail", LecEmail).findUnique();
+    }
+
     public static MLecs findLecByIdNo(String IdNo) {
         return findLecturers.where().eq("IdNo", IdNo).findUnique();
     }
