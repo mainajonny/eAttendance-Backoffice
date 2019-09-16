@@ -58,6 +58,7 @@ create table mstud (
   stud_name                 varchar(255),
   reg_no                    varchar(255),
   prog                      varchar(255),
+  prog_level                varchar(255),
   year                      varchar(255),
   sem                       varchar(255),
   is_active                 varchar(255),

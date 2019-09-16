@@ -40,6 +40,7 @@ public class CStud extends Controller {
         String StudName = requestform.get("StudName");
         String RegNo = requestform.get("RegNo");
         String Prog = requestform.get("Prog");
+        String ProgLevel = requestform.get("ProgLevel");
         String Year = requestform.get("Year");
         String Sem = requestform.get("Sem");
 
@@ -47,6 +48,7 @@ public class CStud extends Controller {
         stud.StudName=StudName;
         stud.RegNo=RegNo;
         stud.Prog=Prog;
+        stud.ProgLevel=ProgLevel;
         stud.Year=Year;
         stud.Sem=Sem;
         stud.isActive="1";
@@ -67,6 +69,7 @@ public class CStud extends Controller {
         mStud.StudName=Form.form().bindFromRequest().get("StudName");
         mStud.RegNo=Form.form().bindFromRequest().get("RegNo");
         mStud.Prog=Form.form().bindFromRequest().get("Prog");
+        mStud.ProgLevel=Form.form().bindFromRequest().get("ProgLevel");
         mStud.Year=Form.form().bindFromRequest().get("Year");
         mStud.Sem=Form.form().bindFromRequest().get("Sem");
         Ebean.update(mStud);
@@ -131,9 +134,12 @@ public class CStud extends Controller {
                 sortBy = "Prog";
                 break;
             case 4:
-                sortBy = "Year";
+                sortBy = "ProgLevel";
                 break;
             case 5:
+                sortBy = "Year";
+                break;
+            case 6:
                 sortBy = "Sem";
                 break;
 
@@ -173,6 +179,7 @@ public class CStud extends Controller {
             row.put("StudName", cc.StudName);
             row.put("RegNo", cc.RegNo);
             row.put("Prog", cc.Prog);
+            row.put("ProgLevel", cc.ProgLevel);
             row.put("Year", cc.Year);
             row.put("Sem", cc.Sem);
             row.put("isActive", cc.isActive);

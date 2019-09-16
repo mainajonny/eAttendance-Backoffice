@@ -27,6 +27,9 @@ public class MStud extends Model{
     public String Prog;
 
     @Constraints.Required
+    public String ProgLevel;
+
+    @Constraints.Required
     public String Year;
 
     @Constraints.Required
@@ -51,6 +54,10 @@ public class MStud extends Model{
 
     public static MStud findProgByStudent(String RegNo) {
         return findStudents.where().eq("RegNo", RegNo).findUnique();
+    }
+
+    public static List<MStud> findStudByProgLevelYearSem(String Prog,String ProgLevel,String Year,String Sem) {
+        return findStudents.where().eq("Prog", Prog).eq("ProgLevel", ProgLevel).eq("Year", Year).eq("Sem", Sem).findList();
     }
 
     public static Map<String, String> studentoptions(){

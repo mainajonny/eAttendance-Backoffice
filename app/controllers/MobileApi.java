@@ -69,6 +69,12 @@ public class MobileApi extends Controller {
 
     }
 
+    public static Result returnAllDepartments(){
+        System.out.println("Getting departments");
+        return ok(Json.toJson(MDept.findAll()));
+
+    }
+
 
     public static Result returnAllLecs(){
         System.out.println("Getting lecs");
@@ -106,6 +112,47 @@ public class MobileApi extends Controller {
 
         if(MAssignUnit.findUnitByEmailandDept(AssignLec, AssignDept) != null){
                 result.put("responseCode", Json.toJson(MAssignUnit.findUnitByEmailandDept(AssignLec, AssignDept)));
+            }
+
+            return ok(result);
+
+    }
+
+    public static Result returnStudList(){
+        ObjectNode result;
+        result = Json.newObject();
+
+        DynamicForm requestform=Form.form().bindFromRequest();
+        String Prog = requestform.get("Prog");
+        String ProgLevel = requestform.get("ProgLevel");
+        String Year = requestform.get("Year");
+        String Sem = requestform.get("Sem");
+
+
+        System.out.println("Getting..."+Prog);
+        System.out.println("Getting..."+ProgLevel);
+        System.out.println("Getting..."+Year);
+        System.out.println("Getting..."+Sem);
+
+        if(MStud.findStudByProgLevelYearSem(Prog, ProgLevel, Year, Sem) != null){
+                result.put("responseCode", Json.toJson(MStud.findStudByProgLevelYearSem(Prog, ProgLevel, Year, Sem)));
+            }
+
+            return ok(result);
+
+    }
+
+    public static Result returnProgrammes(){
+        ObjectNode result;
+        result = Json.newObject();
+
+        DynamicForm requestform=Form.form().bindFromRequest();
+        String Dept = requestform.get("ProgDept");
+
+        System.out.println("Getting..."+Dept);
+
+        if(MProgs.findProgByDept(Dept) != null){
+                result.put("responseCode", Json.toJson(MProgs.findProgByDept(Dept)));
             }
 
             return ok(result);
